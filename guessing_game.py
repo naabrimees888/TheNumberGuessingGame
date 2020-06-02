@@ -11,7 +11,7 @@ NOTE: If you strongly prefer to work locally on your own computer, you can total
 
 import random
 
-
+high_score = []
 def start_game():
     """Psuedo-code Hints
     
@@ -30,7 +30,10 @@ def start_game():
     ( You can add more features/enhancements if you'd like to. )
     """
     # write your code inside this function.
-    print("Welcome to number guessing game!")
+    if not high_score:
+        print("Welcome to number guessing game!")
+    else:
+        print("Welcome to number guessing game!\nYour high score is: {}".format(min(high_score)))
     random_number = random.randint(1, 10)
     tries = 0
 
@@ -66,8 +69,10 @@ def start_game():
                         print("You got it! The number was: {} and you had {} tries\n".format(random_number, tries))
                         break
         break
+    high_score.append(tries)
 # Kick off the program by calling the start_game function.
 start_game()
+
 while True:
     new_game = input("Would you like to play a new game? Yes/No \n")
     new_game.lower()
@@ -75,5 +80,5 @@ while True:
         start_game()
         continue
     else:
-        print("Thank you for playing this game!")
+        print("Thank you for playing this game!\n Your high score was {}".format(min(high_score)))
         break
